@@ -4,11 +4,13 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import com.kazman.smog.R
 import com.kazman.smog.databinding.ActivityMainBinding
+import com.kazman.smog.viewmodel.MainViewModel
 
 class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding.viewModel = MainViewModel()
     }
 }
