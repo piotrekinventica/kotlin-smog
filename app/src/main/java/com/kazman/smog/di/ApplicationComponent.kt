@@ -1,6 +1,8 @@
 package com.kazman.smog.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import com.kazman.smog.rest.ApiRequests
 import dagger.Component
 import javax.inject.Singleton
@@ -14,4 +16,6 @@ import javax.inject.Singleton
 interface ApplicationComponent {
     fun getContext(): Context
     fun getApiRequests(): ApiRequests
+    fun getPreferences(): SharedPreferences
+    fun getPackageManager(): PackageManager
 }
