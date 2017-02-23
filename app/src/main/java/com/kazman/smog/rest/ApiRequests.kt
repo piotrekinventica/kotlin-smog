@@ -3,6 +3,7 @@ package com.kazman.smog.rest
 import com.kazman.smog.rest.model.ApiResponse
 import com.kazman.smog.rest.model.City
 import com.kazman.smog.rest.model.Station
+import io.reactivex.Single
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,7 +15,7 @@ import retrofit2.http.Query
 interface ApiRequests {
 
     @GET("/cities")
-    fun cities(): Call<ApiResponse<City>>
+    fun cities(): Single<ApiResponse<City>>
 
     @GET("/cities/{city}")
     fun city(@Path("city") city: String): City

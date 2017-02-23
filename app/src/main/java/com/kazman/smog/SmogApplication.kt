@@ -1,6 +1,7 @@
 package com.kazman.smog
 
 import android.app.Application
+import com.kazman.smog.di.Injector
 import jp.wasabeef.takt.Takt
 
 /**
@@ -13,6 +14,7 @@ class SmogApplication : Application() {
         if (BuildConfig.DEBUG) {
             Takt.stock(this).play()
         }
+        Injector.start(this)
     }
 
     override fun onTerminate() {
