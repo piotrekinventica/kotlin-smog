@@ -10,7 +10,9 @@ class CityListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val model = CityListViewModel()
         val binding = DataBindingUtil.setContentView<ActivityCityListBinding>(this, R.layout.activity_city_list)
-        binding.viewModel = CityListViewModel()
+        binding.viewModel = model
+        viewModel = model
     }
 }
