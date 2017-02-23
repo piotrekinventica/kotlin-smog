@@ -1,8 +1,12 @@
 package com.kazman.smog.model
 
-import android.util.Log
+import com.kazman.smog.cachedCityList
 import com.kazman.smog.di.Injector
+import com.kazman.smog.edit
 import com.kazman.smog.rest.model.City
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -20,7 +24,11 @@ class CityListModel {
                 ?.subscribe({
                     list ->
                     cityList = list._embedded.records
-                    Log.e("TAG", cityList.toString())
+                    Injector.component?.getPreferences()?.edit {
+                        val type = Types.newParameterizedType(List::class.java, City::class.java)
+                        val jsonAdapter: JsonAdapter<List<City>> = Moshi.Builder().build().adapter(type)
+                        putString(cachedCityList, jsonAdapter.toJson(cityList))
+                    }
                 }, Throwable::printStackTrace)
     }
 }
